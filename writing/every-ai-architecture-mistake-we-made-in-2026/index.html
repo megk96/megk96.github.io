@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Every AI Architecture Mistake We Made in 2026 — a record of recurring architectural failures in AI systems and the principles that should shape the next generation of AI platforms.">
+  <title>Every AI Architecture Mistake We Made in 2026 — Meghana Kumar</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+
+  <!-- SITE HEADER START -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="/">Meghana Kumar</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/projects/">Projects</a>
+        <a href="/writing/" aria-current="page">Writing</a>
+        <a href="/about/">About</a>
+      </nav>
+    </div>
+  </header>
+  <!-- SITE HEADER END -->
+
+  <main id="main-content">
+
+    <header class="article-hero">
+      <div class="shell">
+        <a class="text-link" href="/writing/">← Back to Writing</a>
+        <p class="eyebrow eyebrow--accent" style="margin-top: 28px;">AI Architecture</p>
+        <h1 class="article-page-title">Every AI Architecture Mistake We Made in 2026</h1>
+        <p class="article-abstract">2026 was the year many teams stopped asking whether AI could produce useful outputs and started asking how to build durable systems around it. We learned quickly, but not cleanly. This is a record of the mistakes I repeatedly saw while designing AI systems this year—and the principles I now believe should shape the next generation of AI platforms.</p>
+        <div class="article-byline">
+          <span>August 2026</span>
+          <span>12 min read</span>
+        </div>
+        <p class="article-related-project">Related project: <a href="/projects/policy-friction-intelligence-platform/">Policy Friction Intelligence Platform</a></p>
+      </div>
+    </header>
+
+    <article class="article-body">
+      <div class="shell prose">
+
+        <p>We built abstractions before understanding the applications they needed to serve. We treated agents as architectural units when they were often only implementation choices. We allowed prompts to absorb responsibilities that should have belonged to schemas, policies, state machines, evaluators, and ordinary software.</p>
+
+        <h2>The systems worked—until we asked them to hold</h2>
+        <p>Most AI prototypes are persuasive under controlled conditions.</p>
+        <p>A model receives a carefully prepared input. It selects a tool, produces an analysis, or generates a recommendation. The demonstration looks intelligent. The path from input to output appears coherent.</p>
+        <p>The problems begin when the system is expected to operate repeatedly.</p>
+        <p>Inputs become incomplete. Users contradict themselves. Tools fail. Context grows. Requirements change. Multiple applications need different behavior from the same underlying platform. The reasoning cannot be inspected. Nobody knows whether a surprising answer is an error, a legitimate judgment, or an undocumented product decision.</p>
+        <p>The central mistake we made was not that we used the wrong model or framework.</p>
+        <p>It was that we repeatedly confused visible intelligence with architectural durability.</p>
+        <p>A system that produces one impressive answer is not yet a platform. A platform must preserve its meaning across changing inputs, applications, models, policies, and operators.</p>
+        <p>That requirement changes how the architecture must be designed.</p>
+
+        <h2>Mistake 1: We began with agents instead of responsibilities</h2>
+        <p>Many systems were designed by first naming agents:</p>
+        <ul>
+          <li>data agent;</li>
+          <li>analysis agent;</li>
+          <li>insights agent;</li>
+          <li>recommendation agent;</li>
+          <li>visualization agent.</li>
+        </ul>
+        <p>This gave the architecture an immediate sense of order. Each agent had a role, and the workflow could be drawn as a sequence of boxes.</p>
+        <p>But an agent is not a responsibility boundary.</p>
+        <p>It is an execution strategy.</p>
+        <p>A responsibility may be implemented through deterministic code, a model call, a retrieval operation, a constrained workflow, a human decision, or an agent. When we started by creating agents, we prematurely committed every responsibility to the same computational form.</p>
+        <p>The result was predictable.</p>
+        <p>Agents acquired overlapping instructions. Similar transformations happened in multiple places. Business rules were buried inside prompts. Handoffs became increasingly verbose because downstream agents needed to reconstruct what upstream agents had meant.</p>
+        <p>The better starting point is not:</p>
+        <blockquote>Which agents should exist?</blockquote>
+        <p>It is:</p>
+        <blockquote>Which responsibilities must remain independently understandable, testable, replaceable, and governable?</blockquote>
+        <p>For example, evidence collection, policy interpretation, decision generation, and presentation are different responsibilities even when one model is temporarily performing all four.</p>
+        <p>The architecture should preserve those distinctions before deciding how they execute.</p>
+
+        <h2>Mistake 2: We treated prompts as the system</h2>
+        <p>Prompts became a convenient place to store everything:</p>
+        <ul>
+          <li>role definitions;</li>
+          <li>task instructions;</li>
+          <li>business constraints;</li>
+          <li>domain knowledge;</li>
+          <li>output formats;</li>
+          <li>escalation policies;</li>
+          <li>evaluation criteria;</li>
+          <li>examples;</li>
+          <li>tool-use guidance.</li>
+        </ul>
+        <p>This worked initially because prompts were easy to change.</p>
+        <p>But ease of change is not the same as clarity of change.</p>
+        <p>Once the prompt became the primary container for system behavior, several problems appeared.</p>
+        <p>Nobody could identify which instruction represented product policy and which represented implementation guidance. Conflicting rules were resolved implicitly by the model. Changes became difficult to review because altering one paragraph could affect several downstream behaviors. Testing became example-driven rather than contract-driven.</p>
+        <p>Prompts are valuable, but they should not be the constitutional document of the system.</p>
+        <p>Stable behavior should be represented through explicit artifacts:</p>
+        <ul>
+          <li>typed schemas;</li>
+          <li>policy definitions;</li>
+          <li>state transitions;</li>
+          <li>tool contracts;</li>
+          <li>validation rules;</li>
+          <li>evaluation rubrics;</li>
+          <li>authorization boundaries;</li>
+          <li>versioned configuration.</li>
+        </ul>
+        <p>The prompt should help the model operate within the architecture. It should not secretly contain the architecture.</p>
+
+        <h2>Mistake 3: We confused a workflow with a platform</h2>
+        <p>A workflow solves a particular sequence of work.</p>
+        <p>A platform enables multiple applications to compose capabilities safely.</p>
+        <p>We repeatedly attempted to turn one successful workflow into a platform by generalizing its components. The original sequence became configurable. Agent names became abstract. Tools were registered dynamically. Prompts became templates. Execution paths became graphs.</p>
+        <p>But configurability does not automatically create a platform.</p>
+        <p>A real platform needs stable primitives with clear semantics.</p>
+        <p>Applications should know:</p>
+        <ul>
+          <li>what capability they are invoking;</li>
+          <li>what inputs it accepts;</li>
+          <li>what guarantees it provides;</li>
+          <li>what state it reads and writes;</li>
+          <li>how it fails;</li>
+          <li>how it is evaluated;</li>
+          <li>what requires human approval;</li>
+          <li>what can be overridden.</li>
+        </ul>
+        <p>Without those properties, the platform is merely a flexible workflow engine.</p>
+        <p>The mistake was trying to generalize the visible shape of the first application rather than identifying the underlying invariants shared by future applications.</p>
+        <p>The right question is not:</p>
+        <blockquote>How do we make this workflow configurable?</blockquote>
+        <p>It is:</p>
+        <blockquote>What must remain consistently true across every application built on this system?</blockquote>
+        <p>Those invariants become the platform primitives.</p>
+
+        <h2>Mistake 4: We designed for maximum flexibility before earning it</h2>
+        <p>Dynamic execution is attractive.</p>
+        <p>The system can decide which tools to use, which agents to call, what sequence to follow, and when to stop. It appears adaptive and intelligent.</p>
+        <p>It also multiplies the number of possible execution paths.</p>
+        <p>Every new degree of freedom creates additional questions:</p>
+        <ul>
+          <li>Can this action occur in this state?</li>
+          <li>Is the system allowed to skip this step?</li>
+          <li>What happens if two tools produce conflicting evidence?</li>
+          <li>Who owns the resulting state?</li>
+          <li>Can the decision be resumed after failure?</li>
+          <li>What must be logged?</li>
+          <li>Which paths require approval?</li>
+          <li>How can the behavior be evaluated?</li>
+        </ul>
+        <p>We often added flexibility before establishing a reliable constrained path.</p>
+        <p>The result was not intelligence. It was ambiguity.</p>
+        <p>The better progression is:</p>
+        <ol>
+          <li>establish a deterministic happy path;</li>
+          <li>define explicit branches;</li>
+          <li>identify where uncertainty genuinely requires adaptive reasoning;</li>
+          <li>introduce dynamic execution only at those boundaries;</li>
+          <li>preserve guardrails around state, tools, permissions, and termination.</li>
+        </ol>
+        <p>The most mature AI architecture is not the one that maximizes autonomy. It is the one that assigns autonomy precisely.</p>
+
+        <h2>Mistake 5: We allowed context to become an unbounded shared workspace</h2>
+        <p>When AI systems failed to understand something, the instinctive solution was to provide more context.</p>
+        <p>We added conversation history, documents, examples, intermediate outputs, user preferences, system instructions, retrieved knowledge, tool results, and previous reasoning.</p>
+        <p>Eventually the context window became a shared dumping ground.</p>
+        <p>This created two forms of failure.</p>
+        <p>The first was overflow: too much irrelevant material competed for attention.</p>
+        <p>The second was under-specification: although the context was large, the model still did not know which information was authoritative, current, or relevant to the immediate decision.</p>
+        <p>Context is not merely text passed to a model. It is an architectural resource.</p>
+        <p>It should have:</p>
+        <ul>
+          <li>ownership;</li>
+          <li>scope;</li>
+          <li>precedence;</li>
+          <li>lifetime;</li>
+          <li>provenance;</li>
+          <li>access rules;</li>
+          <li>compression policies;</li>
+          <li>relevance criteria.</li>
+        </ul>
+        <p>Not every component should receive the same context. Not every piece of context should survive across every step.</p>
+        <p>The future architecture must distinguish among:</p>
+        <ul>
+          <li>durable system state;</li>
+          <li>temporary working context;</li>
+          <li>retrieved evidence;</li>
+          <li>user-provided facts;</li>
+          <li>inferred conclusions;</li>
+          <li>policies and constraints;</li>
+          <li>previous decisions.</li>
+        </ul>
+        <p>Context engineering becomes reliable only when context stops being treated as a giant prompt and starts being treated as governed state.</p>
+
+        <h2>Mistake 6: We created handoffs without contracts</h2>
+        <p>Multi-step AI systems depend on handoffs.</p>
+        <p>One component produces an output that another component must interpret and continue.</p>
+        <p>Early versions used natural-language handoffs because they preserved nuance. Upstream components explained what they had done, and downstream components inferred what mattered.</p>
+        <p>This was flexible, but fragile.</p>
+        <p>The receiving component could not reliably distinguish:</p>
+        <ul>
+          <li>evidence from interpretation;</li>
+          <li>fact from assumption;</li>
+          <li>recommendation from decision;</li>
+          <li>confidence from rhetorical tone;</li>
+          <li>missing information from intentionally omitted information.</li>
+        </ul>
+        <p>A durable handoff requires structure.</p>
+        <p>At minimum, it should make explicit:</p>
+        <ul>
+          <li>the task performed;</li>
+          <li>the source evidence used;</li>
+          <li>the output produced;</li>
+          <li>unresolved questions;</li>
+          <li>assumptions;</li>
+          <li>confidence;</li>
+          <li>policy constraints;</li>
+          <li>validation status;</li>
+          <li>expected next action.</li>
+        </ul>
+        <p>Natural language can remain part of the payload, but it should live inside a contract rather than replacing one.</p>
+        <p>Without contracts, every downstream component becomes responsible for reverse-engineering the intentions of the previous one.</p>
+
+        <h2>Mistake 7: We added human review at the end</h2>
+        <p>Human-in-the-loop design was often treated as an approval screen placed after the system completed its work.</p>
+        <p>The user received a recommendation and could approve or reject it.</p>
+        <p>This was not enough.</p>
+        <p>Human judgment may be needed before the final output:</p>
+        <ul>
+          <li>to clarify ambiguous intent;</li>
+          <li>to choose among competing objectives;</li>
+          <li>to resolve missing information;</li>
+          <li>to authorize sensitive tool use;</li>
+          <li>to override a policy;</li>
+          <li>to inspect low-confidence evidence;</li>
+          <li>to redirect the system before expensive execution.</li>
+        </ul>
+        <p>Human interaction is not a final checkpoint. It is part of the control architecture.</p>
+        <p>The system needs explicit policies for:</p>
+        <ul>
+          <li>when to ask;</li>
+          <li>what to ask;</li>
+          <li>who may answer;</li>
+          <li>how the answer changes state;</li>
+          <li>whether the system may continue without a response;</li>
+          <li>how disagreement is handled;</li>
+          <li>how an earlier approval may be revoked.</li>
+        </ul>
+        <p>The strongest systems do not merely allow human intervention. They know when human judgment is the appropriate computational primitive.</p>
+
+        <h2>Mistake 8: We treated evaluation as a final layer</h2>
+        <p>Evaluation was often postponed until the system had been implemented.</p>
+        <p>Once the workflow existed, we attempted to determine whether its outputs were good.</p>
+        <p>By then, many architectural choices had already made the system difficult to evaluate.</p>
+        <p>Intermediate decisions were not stored. Evidence provenance was missing. Different responsibilities had been merged into one model call. There was no stable contract against which a component could be tested.</p>
+        <p>Evaluation is not simply a scoring mechanism placed at the end.</p>
+        <p>It shapes the architecture.</p>
+        <p>A system designed for evaluation must preserve:</p>
+        <ul>
+          <li>intermediate state;</li>
+          <li>component boundaries;</li>
+          <li>expected behavior;</li>
+          <li>traceable evidence;</li>
+          <li>failure classifications;</li>
+          <li>human corrections;</li>
+          <li>model and prompt versions;</li>
+          <li>policy versions;</li>
+          <li>cost and latency data.</li>
+        </ul>
+        <p>We also over-relied on one aggregate quality score.</p>
+        <p>A single number hides the difference between:</p>
+        <ul>
+          <li>retrieval failure;</li>
+          <li>reasoning failure;</li>
+          <li>policy violation;</li>
+          <li>unsupported inference;</li>
+          <li>poor presentation;</li>
+          <li>incorrect tool use;</li>
+          <li>insufficient clarification.</li>
+        </ul>
+        <p>Evaluation should produce actionable signals, not merely judgment.</p>
+
+        <h2>Mistake 9: We confused observability with logs</h2>
+        <p>We logged prompts, responses, tool calls, and errors.</p>
+        <p>That produced data, but not necessarily understanding.</p>
+        <p>Operational logs answer questions such as:</p>
+        <ul>
+          <li>Did the request complete?</li>
+          <li>Which tool failed?</li>
+          <li>How long did the call take?</li>
+        </ul>
+        <p>AI observability must answer additional questions:</p>
+        <ul>
+          <li>Why did the system choose this path?</li>
+          <li>Which evidence influenced the decision?</li>
+          <li>Which policy applied?</li>
+          <li>What uncertainty remained?</li>
+          <li>Where did the meaning change between components?</li>
+          <li>Was the final action consistent with the user's intent?</li>
+          <li>Which earlier decision caused the eventual failure?</li>
+        </ul>
+        <p>A trace of events is not automatically a trace of reasoning.</p>
+        <p>The architecture must expose the semantic transitions that matter.</p>
+        <p>This does not require storing unrestricted hidden reasoning. It requires storing structured decision artifacts: selected evidence, declared assumptions, decision criteria, policy checks, confidence, and resulting actions.</p>
+        <p>The goal is not to capture everything the model processed.</p>
+        <p>The goal is to make the system accountable for what it did.</p>
+
+        <h2>Mistake 10: We attempted reuse through abstraction instead of proof</h2>
+        <p>Platform teams naturally seek reusable components.</p>
+        <p>But we sometimes created abstractions before observing enough real applications.</p>
+        <p>We imagined generic planners, generic evaluators, generic context managers, and generic orchestration layers. They looked clean in diagrams but became overloaded when confronted with domain-specific behavior.</p>
+        <p>A useful primitive is not one that removes all domain detail.</p>
+        <p>It is one that provides a stable interface while allowing the right domain detail to remain explicit.</p>
+        <p>Reuse must be earned through repeated evidence.</p>
+        <p>A healthier sequence is:</p>
+        <ol>
+          <li>build one application;</li>
+          <li>build a second application with meaningfully different requirements;</li>
+          <li>observe what remains invariant;</li>
+          <li>extract the shared capability;</li>
+          <li>preserve domain-specific policy above it;</li>
+          <li>test the primitive against a third application.</li>
+        </ol>
+        <p>Abstraction should follow demonstrated repetition, not architectural optimism.</p>
+
+        <h2>Mistake 11: We let delivery pressure erase design boundaries</h2>
+        <p>Many architectural failures were not caused by ignorance.</p>
+        <p>They were caused by the conditions under which the system was built.</p>
+        <p>Requirements shifted quickly. Work began before acceptance criteria were clear. Multiple components evolved in parallel. Decisions were communicated informally. Prototype code became production code because rebuilding it felt too expensive.</p>
+        <p>Under pressure, boundaries appear slower than implementation.</p>
+        <p>But the cost is merely delayed.</p>
+        <p>Missing contracts reappear as integration failures. Unclear ownership becomes duplicated logic. Skipped design decisions become inconsistent behavior. The time supposedly saved during implementation is paid later through debugging, explanation, and rework.</p>
+        <p>Architecture is not the act of producing a comprehensive document before coding.</p>
+        <p>It is the discipline of making consequential decisions explicit before they become expensive to reverse.</p>
+        <p>Even under speed, a team needs:</p>
+        <ul>
+          <li>a clear problem statement;</li>
+          <li>declared constraints;</li>
+          <li>component ownership;</li>
+          <li>input and output contracts;</li>
+          <li>definition of done;</li>
+          <li>evaluation criteria;</li>
+          <li>recorded design decisions.</li>
+        </ul>
+        <p>The smallest useful architecture process is still dramatically cheaper than shared ambiguity.</p>
+
+        <h2>What I believe now</h2>
+        <p>The next generation of AI systems should not be organized around increasingly elaborate collections of agents.</p>
+        <p>They should be organized around stable platform capabilities.</p>
+        <p>Those capabilities may include:</p>
+        <ul>
+          <li>governed context;</li>
+          <li>evidence retrieval;</li>
+          <li>structured reasoning;</li>
+          <li>policy enforcement;</li>
+          <li>workflow state;</li>
+          <li>tool execution;</li>
+          <li>evaluation;</li>
+          <li>observability;</li>
+          <li>human judgment;</li>
+          <li>authorization;</li>
+          <li>application-specific configuration.</li>
+        </ul>
+        <p>Agents can operate within this architecture. They should not be the architecture.</p>
+        <p>Applications should be able to compose these capabilities without inheriting the internal complexity of the platform. Platform teams should provide clear guarantees while leaving product teams enough space to express domain-specific behavior.</p>
+        <p>The architecture should make the safe path easy, the adaptive path explicit, and the failure path inspectable.</p>
+
+        <h2>Principles for the next system</h2>
+        <p>The lessons of this year can be reduced to a set of operating principles.</p>
+
+        <h3>Begin with responsibilities, not agents</h3>
+        <p>Define what must remain independently understandable and testable before deciding how it executes.</p>
+
+        <h3>Build one constrained path before adding autonomy</h3>
+        <p>Autonomy should appear only where uncertainty makes it valuable.</p>
+
+        <h3>Represent policy outside prompts</h3>
+        <p>Prompts may interpret policy. They should not be the only place where policy exists.</p>
+
+        <h3>Treat context as governed state</h3>
+        <p>Every piece of context should have scope, provenance, authority, and lifetime.</p>
+
+        <h3>Make handoffs explicit</h3>
+        <p>Components should exchange structured meaning, not require each other to infer intent from prose.</p>
+
+        <h3>Design human judgment into the workflow</h3>
+        <p>Clarification, approval, correction, and escalation are architectural operations.</p>
+
+        <h3>Make evaluation shape the system</h3>
+        <p>If a decision cannot be inspected or tested, the architecture is incomplete.</p>
+
+        <h3>Prefer semantic observability</h3>
+        <p>Store the decisions, evidence, policies, and state transitions required to understand behavior.</p>
+
+        <h3>Earn abstraction through multiple applications</h3>
+        <p>Do not call something a platform primitive until it survives more than one use case.</p>
+
+        <h3>Optimize for legibility</h3>
+        <p>The system should be understandable by the engineers operating it, the product teams extending it, and the people affected by its decisions.</p>
+
+        <h2>The mistake beneath all the others</h2>
+        <p>The deepest mistake was believing that intelligence could compensate for missing structure.</p>
+        <p>It cannot.</p>
+        <p>Models can operate across ambiguity, but a production system cannot depend on ambiguity remaining harmless.</p>
+        <p>The more capable the model becomes, the more important the surrounding architecture becomes. Increased intelligence expands what the system can attempt. Architecture determines what it can do reliably, safely, repeatedly, and accountably.</p>
+        <p>The future of AI engineering will not be defined only by better models.</p>
+        <p>It will be defined by the systems we build around them—and by whether those systems are designed to hold.</p>
+
+      </div>
+    </article>
+
+  </main>
+
+  <!-- SITE FOOTER START -->
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>© 2026 Meghana Kumar</span>
+      <span>Building reliable AI systems</span>
+    </div>
+  </footer>
+  <!-- SITE FOOTER END -->
+
+</body>
+</html>

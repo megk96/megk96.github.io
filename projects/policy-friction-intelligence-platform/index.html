@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Policy Friction Intelligence Platform — a public-facing intelligence system that converts citizens' lived implementation problems into structured evidence for policy access, resolution, and evolution.">
+  <title>Policy Friction Intelligence Platform — Meghana Kumar</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+
+  <!-- SITE HEADER START -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="/">Meghana Kumar</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/projects/" aria-current="page">Projects</a>
+        <a href="/writing/">Writing</a>
+        <a href="/about/">About</a>
+      </nav>
+    </div>
+  </header>
+  <!-- SITE HEADER END -->
+
+  <main id="main-content">
+
+    <header class="case-study-hero">
+      <div class="shell">
+        <a class="text-link" href="/projects/">← Back to Projects</a>
+        <p class="eyebrow eyebrow--accent" style="margin-top: 28px;">System 01</p>
+        <h1 class="case-study-title">Policy Friction Intelligence Platform</h1>
+        <p class="case-study-thesis">A public-facing intelligence system that converts citizens' lived implementation problems into structured evidence for policy access, resolution, and evolution.</p>
+
+        <dl class="case-study-meta">
+          <div>
+            <dt>Category</dt>
+            <dd>Public Policy Infrastructure</dd>
+          </div>
+          <div>
+            <dt>Year</dt>
+            <dd>2026</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd>Concept Development</dd>
+          </div>
+        </dl>
+      </div>
+    </header>
+
+    <div class="shell case-study-layout">
+
+      <aside class="toc" aria-label="Table of contents">
+        <p class="toc-label">Contents</p>
+        <nav>
+          <a href="#overview">Overview</a>
+          <a href="#problem">The problem</a>
+          <a href="#users">Users</a>
+          <a href="#workflow">Core workflow</a>
+          <a href="#architecture">Proposed architecture</a>
+          <a href="#principles">Key principles</a>
+          <a href="#components">System components</a>
+          <a href="#human-in-the-loop">Human-in-the-loop</a>
+          <a href="#evaluation">Evaluation strategy</a>
+          <a href="#failure-modes">Failure modes</a>
+          <a href="#production">Production considerations</a>
+          <a href="#status">Current status</a>
+        </nav>
+      </aside>
+
+      <article class="case-study-content">
+
+        <section id="overview">
+          <h2>Overview</h2>
+          <p>Public policies frequently fail at the point of implementation.</p>
+          <p>The policy may exist. Funding may be allocated. Eligibility may be defined. A government department may technically offer the required benefit or service.</p>
+          <p>Yet citizens still encounter friction:</p>
+          <ul>
+            <li>unclear eligibility;</li>
+            <li>contradictory instructions;</li>
+            <li>missing documentation;</li>
+            <li>inaccessible application processes;</li>
+            <li>conflicts between departments;</li>
+            <li>local implementation gaps;</li>
+            <li>language barriers;</li>
+            <li>repeated rejection without explanation;</li>
+            <li>policies that do not account for real-world conditions.</li>
+          </ul>
+          <p>These problems are often communicated through individual complaints, conversations, phone calls, local officials, or informal public forums. They rarely become structured evidence that can be analyzed across cases.</p>
+          <p>The Policy Friction Intelligence Platform is a proposed interface between citizens, implementers, and policymakers.</p>
+          <p>Its purpose is to collect implementation problems in accessible formats, connect them to relevant policies, identify recurring friction, and help determine whether an existing resolution is available or whether the policy itself requires clarification or evolution.</p>
+        </section>
+
+        <section id="problem">
+          <h2>The problem</h2>
+          <p>Citizens typically describe problems in the language of lived experience.</p>
+          <p>They may say:</p>
+          <blockquote>"I submitted every document, but the office says my village is not listed."</blockquote>
+          <p>or:</p>
+          <blockquote>"The benefit exists, but the portal does not accept the identification document that our district issues."</blockquote>
+          <p>Policy systems, however, are organized around legislation, schemes, eligibility rules, departments, jurisdictions, administrative orders, and implementation guidelines.</p>
+          <p>There is a translation gap between the way the public experiences a failure and the way the government represents the corresponding policy.</p>
+          <p>This creates several problems:</p>
+          <ul>
+            <li>citizens do not know which policy applies;</li>
+            <li>officials may not recognize that several complaints share one root cause;</li>
+            <li>recurring implementation failures remain fragmented;</li>
+            <li>policy conflicts are discovered slowly;</li>
+            <li>informal workarounds are not made visible;</li>
+            <li>policymakers lack a structured feedback loop from implementation.</li>
+          </ul>
+          <p>The system must bridge this gap without pretending that an AI model can autonomously interpret, change, or enforce public policy.</p>
+        </section>
+
+        <section id="users">
+          <h2>Users</h2>
+          <p>The platform may serve several user groups:</p>
+          <h3>Citizens</h3>
+          <p>People attempting to understand or access a public benefit, right, service, or administrative process.</p>
+          <h3>Frontline officials</h3>
+          <p>Government employees and local administrators who repeatedly encounter implementation barriers.</p>
+          <h3>Policy departments</h3>
+          <p>Teams responsible for evaluating whether policies are accessible, coherent, and implementable.</p>
+          <h3>Civil-society organizations</h3>
+          <p>Groups helping communities navigate public systems and document recurring failures.</p>
+          <h3>Review and governance teams</h3>
+          <p>Authorized humans responsible for validating policy interpretations, approving escalations, and reviewing recommendations.</p>
+        </section>
+
+        <section id="workflow">
+          <h2>Core workflow</h2>
+
+          <h3>1. Accessible issue submission</h3>
+          <p>Users submit a problem through:</p>
+          <ul>
+            <li>text;</li>
+            <li>voice recording;</li>
+            <li>assisted form;</li>
+            <li>local-language interface;</li>
+            <li>authorized public forum;</li>
+            <li>intermediary submission by a frontline worker.</li>
+          </ul>
+          <p>The interface should not require the citizen to know the name of the policy or department.</p>
+
+          <h3>2. Language and speech processing</h3>
+          <p>Voice submissions are transcribed.</p>
+          <p>The system identifies the language, preserves the original recording, and produces a normalized text representation for analysis.</p>
+          <p>Translations must remain linked to the source so reviewers can inspect whether meaning was lost.</p>
+
+          <h3>3. Structured problem extraction</h3>
+          <p>The submission is converted into structured fields such as:</p>
+          <ul>
+            <li>user objective;</li>
+            <li>benefit or service sought;</li>
+            <li>location and jurisdiction;</li>
+            <li>department involved;</li>
+            <li>process stage;</li>
+            <li>documents requested;</li>
+            <li>action already taken;</li>
+            <li>rejection or obstruction encountered;</li>
+            <li>stated reason;</li>
+            <li>missing information;</li>
+            <li>urgency;</li>
+            <li>possible vulnerability indicators.</li>
+          </ul>
+          <p>The system should distinguish explicitly provided facts from inferred fields.</p>
+
+          <h3>4. Policy retrieval</h3>
+          <p>The platform retrieves potentially relevant:</p>
+          <ul>
+            <li>legislation;</li>
+            <li>policy documents;</li>
+            <li>scheme guidelines;</li>
+            <li>eligibility criteria;</li>
+            <li>implementation manuals;</li>
+            <li>circulars;</li>
+            <li>administrative orders;</li>
+            <li>frequently asked questions;</li>
+            <li>jurisdiction-specific rules;</li>
+            <li>validated historical resolutions.</li>
+          </ul>
+          <p>Each retrieved source must include provenance, version, jurisdiction, and effective date.</p>
+
+          <h3>5. Policy matching and interpretation support</h3>
+          <p>The system identifies which policies may apply and explains why.</p>
+          <p>It should not present an uncertain model interpretation as an authoritative legal or administrative determination.</p>
+          <p>Outputs should clearly separate:</p>
+          <ul>
+            <li>directly supported policy statements;</li>
+            <li>possible interpretations;</li>
+            <li>unresolved ambiguity;</li>
+            <li>conflicting provisions;</li>
+            <li>missing documents;</li>
+            <li>questions requiring an authorized reviewer.</li>
+          </ul>
+
+          <h3>6. Resolution matching</h3>
+          <p>The system checks whether the problem resembles a previously validated case.</p>
+          <p>Where an approved resolution already exists, the platform can suggest:</p>
+          <ul>
+            <li>the correct process;</li>
+            <li>required documentation;</li>
+            <li>relevant department;</li>
+            <li>escalation route;</li>
+            <li>grievance mechanism;</li>
+            <li>official contact;</li>
+            <li>accessible explanation in the user's language.</li>
+          </ul>
+
+          <h3>7. Friction and gap detection</h3>
+          <p>Cases are clustered to identify recurring patterns.</p>
+          <p>Examples include:</p>
+          <ul>
+            <li>a portal repeatedly rejecting one category of valid document;</li>
+            <li>district-level interpretation differing from national guidance;</li>
+            <li>two departments assigning responsibility to each other;</li>
+            <li>eligibility language that excludes a common real-world condition;</li>
+            <li>a policy existing on paper but lacking an implementable process;</li>
+            <li>repeated confusion caused by unclear public communication.</li>
+          </ul>
+          <p>The system should distinguish an individual processing failure from a systemic policy gap.</p>
+
+          <h3>8. Human review</h3>
+          <p>Authorized reviewers validate:</p>
+          <ul>
+            <li>the policy match;</li>
+            <li>the interpretation;</li>
+            <li>proposed citizen guidance;</li>
+            <li>detected conflicts;</li>
+            <li>systemic-friction classifications;</li>
+            <li>recommendations for escalation.</li>
+          </ul>
+          <p>High-impact outputs should never bypass human review.</p>
+
+          <h3>9. Policy feedback</h3>
+          <p>Validated patterns are aggregated into evidence for policy teams.</p>
+          <p>The platform may surface:</p>
+          <ul>
+            <li>recurring barriers;</li>
+            <li>affected jurisdictions;</li>
+            <li>volume and severity;</li>
+            <li>vulnerable populations affected;</li>
+            <li>policy clauses associated with friction;</li>
+            <li>operational conflicts;</li>
+            <li>proposed clarifications;</li>
+            <li>proposed implementation changes;</li>
+            <li>evidence from resolved cases.</li>
+          </ul>
+          <p>The system supports policy evolution. It does not autonomously rewrite policy.</p>
+        </section>
+
+        <section id="architecture">
+          <h2>Proposed architecture</h2>
+          <p>The platform can be organized into six major layers.</p>
+          <ul>
+            <li><strong>Intake layer</strong> — Responsible for multimodal submissions, language handling, consent, identity minimization, accessibility, and source preservation.</li>
+            <li><strong>Case intelligence layer</strong> — Transforms submissions into structured cases while retaining evidence, uncertainty, provenance, and inferred-versus-declared distinctions.</li>
+            <li><strong>Policy knowledge layer</strong> — Maintains versioned policy documents, jurisdictional scope, effective dates, relationships among policies, and retrieval indexes.</li>
+            <li><strong>Reasoning and matching layer</strong> — Connects cases to policies, identifies conflicts, compares validated precedents, and generates structured candidate interpretations.</li>
+            <li><strong>Review and governance layer</strong> — Routes cases to authorized humans, records decisions, manages overrides, and enforces approval policies.</li>
+            <li><strong>Analytics and feedback layer</strong> — Clusters validated cases, identifies systemic friction, and creates evidence packages for policy review.</li>
+          </ul>
+        </section>
+
+        <section id="principles">
+          <h2>Key architectural principles</h2>
+          <ul>
+            <li><strong>Evidence before interpretation</strong> — Every conclusion should remain connected to the citizen submission and authoritative policy source.</li>
+            <li><strong>Versioned policy knowledge</strong> — Policies change. Every output must identify which policy version was used.</li>
+            <li><strong>Explicit uncertainty</strong> — The system should say when the evidence is insufficient, the policy is ambiguous, or multiple interpretations remain possible.</li>
+            <li><strong>Human authority</strong> — The model may assist with retrieval, classification, comparison, and drafting. Authorized humans retain responsibility for consequential policy interpretation and recommended change.</li>
+            <li><strong>Privacy by design</strong> — Collect only the personal information necessary to resolve or analyze the issue. Systemic analysis should use de-identified or aggregated cases wherever possible.</li>
+            <li><strong>Accessibility as architecture</strong> — Voice input, local-language support, assisted submission, and understandable explanations are core system capabilities, not optional interface enhancements.</li>
+            <li><strong>Separation of individual resolution and systemic feedback</strong> — A citizen needs an actionable answer. A policy department needs aggregate evidence. These are related but distinct workflows and should have different permissions, data views, and evaluation criteria.</li>
+          </ul>
+        </section>
+
+        <section id="components">
+          <h2>Important system components</h2>
+          <ul>
+            <li>Multilingual submission interface</li>
+            <li>Speech transcription and translation</li>
+            <li>Case schema and validation service</li>
+            <li>Policy document ingestion pipeline</li>
+            <li>Versioned policy registry</li>
+            <li>Hybrid policy retrieval</li>
+            <li>Case-to-policy matching</li>
+            <li>Conflict and ambiguity detector</li>
+            <li>Validated precedent store</li>
+            <li>Human-review work queue</li>
+            <li>Citizen explanation generator</li>
+            <li>Friction clustering and analytics</li>
+            <li>Policy feedback dashboard</li>
+            <li>Audit and provenance service</li>
+            <li>Consent and privacy controls</li>
+          </ul>
+        </section>
+
+        <section id="human-in-the-loop">
+          <h2>Human-in-the-loop model</h2>
+          <p>Human review should be risk-based.</p>
+          <p>Low-risk cases may include retrieving a clearly applicable public instruction or directing a citizen to an official grievance route.</p>
+          <p>Higher-risk cases include:</p>
+          <ul>
+            <li>disputed eligibility;</li>
+            <li>conflicting policy clauses;</li>
+            <li>potential discrimination;</li>
+            <li>sensitive personal circumstances;</li>
+            <li>recommendations affecting many citizens;</li>
+            <li>proposed policy modifications;</li>
+            <li>uncertain jurisdiction;</li>
+            <li>legal interpretation.</li>
+          </ul>
+          <p>The platform should route cases according to impact, uncertainty, and authority—not merely model confidence.</p>
+        </section>
+
+        <section id="evaluation">
+          <h2>Evaluation strategy</h2>
+          <p>The system should be evaluated at multiple levels.</p>
+          <h3>Intake quality</h3>
+          <ul>
+            <li>transcription accuracy;</li>
+            <li>translation fidelity;</li>
+            <li>successful extraction of the citizen's objective;</li>
+            <li>accessibility and completion rates.</li>
+          </ul>
+          <h3>Retrieval quality</h3>
+          <ul>
+            <li>relevant policy recall;</li>
+            <li>jurisdictional correctness;</li>
+            <li>policy-version accuracy;</li>
+            <li>source-authority quality.</li>
+          </ul>
+          <h3>Case interpretation quality</h3>
+          <ul>
+            <li>factual consistency;</li>
+            <li>unsupported inference rate;</li>
+            <li>correct identification of missing information;</li>
+            <li>correct distinction between individual and systemic friction.</li>
+          </ul>
+          <h3>Resolution quality</h3>
+          <ul>
+            <li>usefulness to the citizen;</li>
+            <li>correctness of process guidance;</li>
+            <li>reviewer approval rate;</li>
+            <li>successful resolution rate;</li>
+            <li>reduction in repeated visits or submissions.</li>
+          </ul>
+          <h3>Policy intelligence quality</h3>
+          <ul>
+            <li>validity of detected friction patterns;</li>
+            <li>duplicate-pattern reduction;</li>
+            <li>reviewer acceptance of systemic findings;</li>
+            <li>time from recurring issue to policy-team visibility.</li>
+          </ul>
+          <h3>Safety and governance</h3>
+          <ul>
+            <li>privacy violations;</li>
+            <li>unauthorized policy claims;</li>
+            <li>incorrect high-impact recommendations;</li>
+            <li>failure to escalate uncertain cases;</li>
+            <li>audit completeness.</li>
+          </ul>
+        </section>
+
+        <section id="failure-modes">
+          <h2>Failure modes</h2>
+          <p>Several failure modes require explicit protection.</p>
+          <ul>
+            <li><strong>Incorrect policy matching</strong> — The system retrieves a semantically similar but jurisdictionally irrelevant policy.</li>
+            <li><strong>Outdated guidance</strong> — The model uses a superseded policy document.</li>
+            <li><strong>Translation distortion</strong> — A translated submission loses a legally or administratively important distinction.</li>
+            <li><strong>False systemic pattern</strong> — Several superficially similar complaints are incorrectly grouped despite having different causes.</li>
+            <li><strong>Automation bias</strong> — Reviewers accept a model-generated interpretation without sufficiently inspecting the evidence.</li>
+            <li><strong>Exclusion through interface design</strong> — The people most affected by policy friction cannot use the platform because of language, literacy, disability, connectivity, or device constraints.</li>
+            <li><strong>Privacy leakage</strong> — Sensitive citizen information becomes unnecessarily visible in aggregate policy analysis.</li>
+            <li><strong>Institutional misclassification</strong> — An implementation failure is incorrectly framed as a policy defect, or a genuine policy conflict is dismissed as an isolated operational mistake.</li>
+          </ul>
+        </section>
+
+        <section id="production">
+          <h2>Production considerations</h2>
+          <p>A production implementation would require:</p>
+          <ul>
+            <li>authoritative policy-data partnerships;</li>
+            <li>clear jurisdictional ownership;</li>
+            <li>strict document-versioning workflows;</li>
+            <li>role-based access control;</li>
+            <li>encryption and secure retention;</li>
+            <li>multilingual evaluation datasets;</li>
+            <li>independent governance;</li>
+            <li>case-appeal mechanisms;</li>
+            <li>reviewer accountability;</li>
+            <li>model and prompt version tracking;</li>
+            <li>public transparency about system limitations;</li>
+            <li>clear separation between guidance and formal determination.</li>
+          </ul>
+          <p>The platform should begin with one constrained policy domain and one jurisdiction.</p>
+          <p>The initial objective should not be to dynamically evolve all policy.</p>
+          <p>It should be to prove that citizen-reported friction can be converted into trustworthy, actionable, and reviewable policy intelligence.</p>
+        </section>
+
+        <section id="status">
+          <h2>Current status</h2>
+          <p>This project is currently in concept development.</p>
+          <p>The next phase would involve:</p>
+          <ul>
+            <li>selecting one policy domain;</li>
+            <li>interviewing citizens and frontline officials;</li>
+            <li>defining the case and policy schemas;</li>
+            <li>mapping the formal review process;</li>
+            <li>building a narrow end-to-end prototype;</li>
+            <li>evaluating whether the system improves both citizen resolution and policy visibility.</li>
+          </ul>
+        </section>
+
+        <div class="related-block">
+          <h2>Related writing</h2>
+          <a class="article-row" href="/writing/every-ai-architecture-mistake-we-made-in-2026/" style="border-bottom: 1px solid var(--color-border);">
+            <span class="article-category">AI Architecture</span>
+            <div>
+              <h3 class="article-title" style="font-size: clamp(1.25rem, 2vw, 1.75rem);">Every AI Architecture Mistake We Made in 2026</h3>
+            </div>
+            <div class="article-meta-end">
+              <span class="article-time">12 min</span>
+            </div>
+          </a>
+        </div>
+
+      </article>
+    </div>
+
+  </main>
+
+  <!-- SITE FOOTER START -->
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>© 2026 Meghana Kumar</span>
+      <span>Building reliable AI systems</span>
+    </div>
+  </footer>
+  <!-- SITE FOOTER END -->
+
+</body>
+</html>

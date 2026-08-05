@@ -567,6 +567,25 @@ hr {
   margin: 0 0 20px;
 }
 
+.case-study-content h3 {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin: 1.75em 0 0.75em;
+  color: var(--color-text);
+}
+
+.case-study-content blockquote {
+  max-width: var(--reading-width);
+  margin: 1.5em 0;
+  padding: 0 0 0 24px;
+  border-left: 2px solid var(--color-accent);
+  color: #d5d3ce;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
 .case-study-content p,
 .case-study-content li {
   color: var(--color-text-muted);
