@@ -47,6 +47,11 @@
         <p>Each capability owns a specific kind of complexity. Each exposes a small contract. The system becomes composable not because every component is generic, but because responsibilities are explicit and the hand-offs are stable.</p>
         <p>The result is a foundation that can evolve internally without becoming structurally fragile. Different applications can instantiate the same capability layers with different domain models, retrieval strategies, reasoning methods, and evaluation criteria.</p>
 
+        <figure class="figure-breakout">
+          <img src="/assets/diagrams/foundational-ai-architecture.png?v=2" alt="Foundational AI Architecture diagram showing Data, Semantic, Context, and Reasoning layers flowing into Domain Applications, with Evaluation and Governance as cross-cutting layers.">
+          <figcaption>Foundational AI Architecture</figcaption>
+        </figure>
+
         <h2>Design principles</h2>
         <p>These principles explain how to build on the architecture without collapsing distinct responsibilities back into a single workflow.</p>
 
@@ -134,11 +139,6 @@
         <p>It should not try to define one universal ontology for every problem.</p>
         <p>The foundation can understand how entities, relationships, properties, and rules are represented. The domain decides what those concepts actually mean.</p>
         <p>Reuse should come from <strong>shared capability boundaries</strong>, not from flattening every domain into the same model.</p>
-
-        <figure class="figure-breakout">
-          <img src="/assets/diagrams/foundational-ai-architecture.png?v=2" alt="Foundational AI Architecture diagram showing Data, Semantic, Context, and Reasoning layers flowing into Domain Applications, with Evaluation and Governance as cross-cutting layers.">
-          <figcaption>Foundational AI Architecture</figcaption>
-        </figure>
 
         <h2>How the layers fit together</h2>
         <p>The architecture has four runtime capability layers and two cross-cutting capabilities that operate across the full path.</p>
