@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Designing AI Systems with Composable Capability Layers — an extensible foundation for production-grade intelligence, with clear boundaries between data, semantics, context, reasoning, evaluation, and governance.">
+  <title>Designing AI Systems with Composable Capability Layers — Meghana Kumar</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+
+  <!-- SITE HEADER START -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="/">Meghana Kumar</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/projects/">Projects</a>
+        <a href="/writing/" aria-current="page">Writing</a>
+        <a href="/about/">About</a>
+      </nav>
+    </div>
+  </header>
+  <!-- SITE HEADER END -->
+
+  <main id="main-content">
+
+    <header class="article-hero">
+      <div class="shell">
+        <a class="text-link" href="/writing/">← Back to Writing</a>
+        <p class="eyebrow eyebrow--accent" style="margin-top: 28px;">AI Architecture</p>
+        <h1 class="article-page-title">Designing AI Systems with Composable Capability Layers</h1>
+        <p class="article-abstract">An extensible foundation for production-grade intelligence — decomposing AI system complexity into distinct capability layers with clear boundaries and stable contracts.</p>
+        <div class="article-byline">
+          <span>August 2026</span>
+          <span>8 min read</span>
+        </div>
+      </div>
+    </header>
+
+    <article class="article-body">
+      <div class="shell prose">
+
+        <p>Production AI systems become difficult when different kinds of complexity get mixed together.</p>
+        <p>Raw data, domain logic, retrieval, context selection, reasoning, evaluation, and control often end up tangled inside one workflow. The result is a system that may work, but becomes harder to evolve, debug, evaluate, and reuse.</p>
+        <p>A better foundation is to treat these as <strong>distinct capabilities with clear boundaries</strong>.</p>
+        <p>Each capability owns a specific kind of complexity. Each exposes a small contract. The system becomes composable not because every component is generic, but because responsibilities are explicit and the hand-offs are stable.</p>
+        <p>That is the idea behind this architecture.</p>
+
+        <figure class="figure-breakout">
+          <img src="/assets/diagrams/foundational-ai-architecture.png" alt="Foundational AI Architecture diagram showing Data, Semantic, Context, and Reasoning layers flowing into Domain Applications, with Evaluation and Governance as cross-cutting layers.">
+          <figcaption>Foundational AI Architecture</figcaption>
+        </figure>
+
+        <h2>1. Structure before intelligence</h2>
+        <p>A model should not have to reinterpret the world from scratch every time it performs a task.</p>
+        <p>Raw information should first be prepared, then mapped into domain meaning, then reduced into task-specific context. Only after that should a reasoning system be asked to produce a conclusion.</p>
+        <p>The runtime path is deliberately simple:</p>
+
+        <pre><code>Asset
+  ↓
+DomainObject
+  ↓
+ContextPack
+  ↓
+Conclusion</code></pre>
+
+        <p>This keeps reasoning focused. Intelligence operates inside a structured environment instead of compensating for the lack of one.</p>
+
+        <h2>2. Decompose complexity into composable layers</h2>
+        <p>Different kinds of complexity should have different owners.</p>
+        <p>The <strong>Data Layer</strong> owns input complexity.<br>
+        The <strong>Semantic Layer</strong> owns domain meaning.<br>
+        The <strong>Context Layer</strong> owns information selection.<br>
+        The <strong>Reasoning Layer</strong> owns analysis and synthesis.</p>
+        <p>Two cross-cutting capabilities sit around that runtime path:</p>
+        <ul>
+          <li><strong>Evaluation</strong> owns quality measurement.</li>
+          <li><strong>Governance</strong> owns control and traceability.</li>
+        </ul>
+        <p>This decomposition is not about creating more components. It is about preventing one component from becoming responsible for everything.</p>
+        <p>Complexity can grow inside a layer without leaking across the rest of the system.</p>
+
+        <h2>3. Stable contracts, flexible implementations</h2>
+        <p>The most important architectural decisions are often the boundaries, not the tools inside them.</p>
+        <p>Each layer produces a compact output:</p>
+
+        <pre><code>Asset → DomainObject → ContextPack → Conclusion</code></pre>
+
+        <p>That gives the internal implementation room to evolve.</p>
+        <p>The Context Layer might begin with semantic search and re-ranking. Later, it could add keyword search, graph retrieval, structured filters, or a different ranking strategy. The Reasoning Layer should not need to change if the <code>ContextPack</code> contract remains valid.</p>
+        <p>The same applies elsewhere.</p>
+        <p>A layer can become more sophisticated without forcing the rest of the system to be rewritten.</p>
+        <p>That is what makes the architecture composable.</p>
+
+        <h2>4. Context is a first-class architectural concern</h2>
+        <p>Retrieval is not the same as context.</p>
+        <p>Retrieval finds candidate information. Context curation decides what the reasoning system should actually see.</p>
+        <p>A useful context layer may need to account for:</p>
+        <ul>
+          <li>relevance</li>
+          <li>source quality</li>
+          <li>filtering</li>
+          <li>ranking</li>
+          <li>constraints</li>
+          <li>conflicting information</li>
+        </ul>
+        <p>The goal is not to maximize the amount of information passed to the model.</p>
+        <p>It is to construct the <strong>smallest sufficient context for the task</strong>.</p>
+        <p>The output is a <code>ContextPack</code>: a controlled information boundary that the reasoning layer can rely on.</p>
+
+        <h2>5. Use the right reasoning mechanism, and earn complexity</h2>
+        <p>Not every problem needs a multi-agent system, and not every reasoning task belongs to an LLM.</p>
+        <p>A well-structured system may allow a single reasoning agent to do the job. Other tasks may be better handled by:</p>
+        <ul>
+          <li>forecasting</li>
+          <li>classification</li>
+          <li>pattern discovery</li>
+          <li>rule evaluation</li>
+          <li>statistical analysis</li>
+        </ul>
+        <p>The reasoning layer should be able to compose these methods when needed.</p>
+        <p>The principle is simple:</p>
+        <blockquote>Use the simplest reasoning architecture that solves the problem reliably.</blockquote>
+        <p>Additional orchestration should exist only when it buys a clear capability.</p>
+
+        <h2>6. Validate contracts, not only final outputs</h2>
+        <p>If the final conclusion is wrong, the system should help explain why.</p>
+        <p>The failure may have happened earlier:</p>
+        <ul>
+          <li>the raw input was prepared incorrectly</li>
+          <li>the semantic mapping was wrong</li>
+          <li>the wrong context was selected</li>
+          <li>the reasoning failed despite good inputs</li>
+        </ul>
+        <p>That is why evaluation should exist at important system boundaries, not only at the final answer.</p>
+        <p>Each layer can have its own relevant metrics or rubrics, while end-to-end evaluation measures whether the overall system is solving the intended problem.</p>
+        <p>This makes failures diagnosable instead of opaque.</p>
+
+        <h2>7. Build reusable foundations without erasing domain meaning</h2>
+        <p>A reusable AI foundation should provide the machinery for:</p>
+        <ul>
+          <li>data preparation</li>
+          <li>semantic representation</li>
+          <li>context construction</li>
+          <li>reasoning</li>
+          <li>evaluation</li>
+          <li>governance</li>
+        </ul>
+        <p>It should not try to define one universal ontology for every problem.</p>
+        <p>The foundation can understand how entities, relationships, properties, and rules are represented. The domain decides what those concepts actually mean.</p>
+        <p>That distinction matters.</p>
+        <p>Reuse should come from <strong>shared capability boundaries</strong>, not from flattening every domain into the same model.</p>
+
+        <h2>How the layers fit together</h2>
+        <p>The architecture has four runtime capability layers.</p>
+
+        <h3>Data Layer</h3>
+        <p><strong>Ingest → Prepare</strong></p>
+        <p>Turns raw multimodal input into reusable <code>Asset</code>s.</p>
+
+        <pre><code>Asset
+- data
+- format
+- source
+- metadata</code></pre>
+
+        <h3>Semantic Layer</h3>
+        <p><strong>Map → Persist</strong></p>
+        <p>Transforms source information into structured, domain-defined objects.</p>
+
+        <pre><code>DomainObject
+- type
+- properties
+- relationships
+- sourceRefs</code></pre>
+
+        <h3>Context Layer</h3>
+        <p><strong>Retrieval → Context Curation</strong></p>
+        <p>Retrieves and curates the information required for a specific task.</p>
+
+        <pre><code>ContextPack
+- task
+- context
+- constraints
+- sources</code></pre>
+
+        <h3>Reasoning Layer</h3>
+        <p><strong>Analyze → Synthesize</strong></p>
+        <p>Uses structured knowledge and curated context to produce a grounded conclusion.</p>
+
+        <pre><code>Conclusion
+- type
+- result
+- evidence
+- confidence</code></pre>
+
+        <p>The conclusion may be an insight, recommendation, or decision depending on the application.</p>
+        <p>Two capabilities operate across that runtime path.</p>
+
+        <h3>Evaluation</h3>
+        <p><strong>Measure → Validate</strong></p>
+        <p>Evaluates important contracts and end-to-end system quality.</p>
+
+        <pre><code>EvaluationResult
+- target
+- metric
+- score
+- status</code></pre>
+
+        <h3>Governance</h3>
+        <p><strong>Control → Trace</strong></p>
+        <p>Controls execution and preserves the information required to understand what happened.</p>
+
+        <pre><code>TraceRecord
+- operation
+- inputs
+- outputs
+- evidence
+- metadata</code></pre>
+
+        <pre><code>ExecutionPolicy
+- permissions
+- constraints
+- thresholds
+- approvals</code></pre>
+
+        <h2>The core idea</h2>
+        <p>A production AI system should not push all complexity into the reasoning runtime.</p>
+        <p>It should distribute complexity across explicit capabilities, give each capability clear ownership, and connect those capabilities through small, stable contracts.</p>
+        <p>The result is a foundation that can evolve internally without becoming structurally fragile.</p>
+        <p>Different applications can instantiate the same capability layers with different domain models, retrieval strategies, reasoning methods, and evaluation criteria.</p>
+        <p>That is the value of composability: not making every system the same, but giving different systems a disciplined foundation to build on.</p>
+
+      </div>
+    </article>
+
+  </main>
+
+  <!-- SITE FOOTER START -->
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>© 2026 Meghana Kumar</span>
+      <span>Building reliable AI systems</span>
+    </div>
+  </footer>
+  <!-- SITE FOOTER END -->
+
+</body>
+</html>
