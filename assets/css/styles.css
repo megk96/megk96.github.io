@@ -676,7 +676,7 @@ hr {
 
 .article-abstract {
   max-width: var(--article-width);
-  font-size: clamp(1.05rem, 1.8vw, 1.15rem);
+  font-size: clamp(1.1rem, 1.9vw, 1.2rem);
   line-height: 1.75;
   color: #d5d3ce;
   margin: 0 0 24px;
@@ -731,7 +731,7 @@ hr {
 
 .prose h3 {
   font-family: var(--font-body);
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
   font-weight: 600;
   letter-spacing: 0.04em;
   margin: 2em 0 0.75em;
@@ -739,6 +739,7 @@ hr {
 }
 
 .prose p {
+  font-size: clamp(1.0625rem, 1.5vw, 1.125rem);
   color: var(--color-text-muted);
   line-height: 1.8;
   margin: 0 0 1.35em;
@@ -746,6 +747,7 @@ hr {
 
 .prose ul,
 .prose ol {
+  font-size: clamp(1.0625rem, 1.5vw, 1.125rem);
   color: var(--color-text-muted);
   line-height: 1.75;
   margin: 0 0 1.35em;
@@ -761,7 +763,7 @@ hr {
   padding: 0 0 0 24px;
   border-left: 2px solid var(--color-accent);
   color: #d5d3ce;
-  font-size: 1.05rem;
+  font-size: clamp(1.0625rem, 1.5vw, 1.125rem);
   line-height: 1.7;
 }
 
